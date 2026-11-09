@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>Guess The Friend</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="lava-bg" aria-hidden="true">
+  <div class="lava-blob lava-blob-a"></div>
+  <div class="lava-blob lava-blob-b"></div>
+  <div class="lava-blob lava-blob-c"></div>
+  <div class="lava-blob lava-blob-d"></div>
+  <div class="lava-glow lava-glow-a"></div>
+  <div class="lava-glow lava-glow-b"></div>
+</div>
+
+<div id="app">
+
+  <!-- SCREEN: HOME -->
+  <section class="screen" id="screen-home" data-screen>
+    <div class="blob blob-tl"></div>
+    <div class="blob blob-br"></div>
+
+    <img class="logo logo-big" src="assets/logo.png" alt="Guess The Friend">
+
+    <nav class="menu-bar">
+      <button class="menu-btn" id="btn-create-game">PLAY ONLINE</button>
+      <button class="menu-btn" id="btn-local-game">LOCAL GAME</button>
+      <button class="menu-btn" id="btn-game-settings">GAME SETTINGS</button>
+      <button class="menu-btn menu-btn-htp" id="btn-how-to-play"><i class="fa-solid fa-circle-question"></i> HOW TO PLAY</button>
+    </nav>
+
+    <div class="home-spacer"></div>
+  </section>
+
+  <!-- MODAL: HOW TO PLAY -->
+  <div class="modal-overlay" id="modal-howtoplay" hidden>
+    <div class="modal-box htp-modal-box">
+      <button class="modal-close" data-close="modal-howtoplay" aria-label="Close">&times;</button>
+
+      <div class="htp" id="how-to-play" aria-labelledby="htp-heading">
+        <div class="htp-heading-wrap">
+          <span class="htp-kicker"><i class="fa-solid fa-star"></i> GAME GUIDE <i class="fa-solid fa-star"></i></span>
+          <h2 class="htp-heading" id="htp-heading">HOW TO PLAY</h2>
+        </div>
+
+        <div class="htp-grid">
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">01</span>
+            <span class="htp-icon"><i class="fa-solid fa-gamepad"></i></span>
+          </div>
+          <h3 class="htp-title">Create a Game</h3>
+          <p class="htp-desc">Choose how many players will join the game and customize your game settings.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">02</span>
+            <span class="htp-icon"><i class="fa-solid fa-circle-question"></i></span>
+          </div>
+          <h3 class="htp-title">Get the Question</h3>
+          <p class="htp-desc">The app will randomly give a question for everyone to answer. You can also create and customize your own questions.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">03</span>
+            <span class="htp-icon"><i class="fa-solid fa-pen"></i></span>
+          </div>
+          <h3 class="htp-title">Answer the Question</h3>
+          <p class="htp-desc">Each player secretly types their own answer in the app.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">04</span>
+            <span class="htp-icon"><i class="fa-solid fa-eye"></i></span>
+          </div>
+          <h3 class="htp-title">Reveal the Answers</h3>
+          <p class="htp-desc">Answers will be revealed one at a time without showing who wrote them.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">05</span>
+            <span class="htp-icon"><i class="fa-solid fa-user-group"></i></span>
+          </div>
+          <h3 class="htp-title">Guess the Friend</h3>
+          <p class="htp-desc">Read the revealed answer and guess which friend wrote it.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">06</span>
+            <span class="htp-icon"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <h3 class="htp-title">Vote</h3>
+          <p class="htp-desc">Choose your guess directly in the app. You'll have a limited time to decide before the voting closes.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">07</span>
+            <span class="htp-icon"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <h3 class="htp-title">Next Answer</h3>
+          <p class="htp-desc">After voting, the next answer will be revealed. Keep guessing and voting until all answers are revealed.</p>
+        </div>
+
+        <div class="htp-card">
+          <div class="htp-card-top">
+            <span class="htp-num">08</span>
+            <span class="htp-icon"><i class="fa-solid fa-trophy"></i></span>
+          </div>
+          <h3 class="htp-title">Find the Winner</h3>
+          <p class="htp-desc">The player with the most correct guesses wins the round!</p>
+        </div>
+      </div>
+
+      <div class="htp-tip">
+        <span class="htp-tip-icon"><i class="fa-solid fa-lightbulb"></i></span>
+        <div class="htp-tip-text">
+          <span class="htp-tip-label">TIP</span>
+          <p class="htp-tip-desc"><strong>Know your friends well!</strong> The better you know them, the easier it is to guess who wrote each answer.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: GAME SETTINGS -->
+  <div class="modal-overlay" id="modal-settings" hidden>
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal-settings" aria-label="Close">&times;</button>
+      <h2 class="modal-title">GAME SETTINGS</h2>
+
+      <div class="setting-row">
+        <div class="setting-label">Round Duration (guessing timer)</div>
+        <div class="counter-box small-counter">
+          <button class="counter-btn" id="duration-minus" aria-label="Decrease duration">&minus;</button>
+          <div class="counter-value" id="duration-value">60s</div>
+          <button class="counter-btn" id="duration-plus" aria-label="Increase duration">+</button>
+        </div>
+        <div class="hint-text small-hint">Max 3 minutes (180s)</div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-label">Number of Rounds</div>
+        <div class="counter-box small-counter">
+          <button class="counter-btn" id="rounds-minus" aria-label="Decrease rounds">&minus;</button>
+          <div class="counter-value" id="rounds-value">5</div>
+          <button class="counter-btn" id="rounds-plus" aria-label="Increase rounds">+</button>
+        </div>
+        <div class="hint-text small-hint">Max 10 rounds</div>
+      </div>
+
+      <button class="btn btn-primary" id="btn-save-settings">SAVE</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: PLAYER COUNT -->
+  <section class="screen" id="screen-count" data-screen hidden>
+    <button class="back-btn" data-back="screen-home" aria-label="Back">&larr;</button>
+    <img class="logo logo-small" src="assets/logo.png" alt="Guess The Friend">
+    <h1 class="title">HOW MANY<br>PLAYERS?</h1>
+    <div class="counter-box">
+      <button class="counter-btn" id="count-minus" aria-label="Decrease player count">&minus;</button>
+      <div class="counter-value" id="count-value">4</div>
+      <button class="counter-btn" id="count-plus" aria-label="Increase player count">+</button>
+    </div>
+    <p class="hint-text">Recommended: 3-8 players</p>
+    <button class="btn btn-primary" id="btn-continue-count">CONTINUE &rarr;</button>
+  </section>
+
+  <!-- SCREEN: PLAYER NAMES -->
+  <section class="screen" id="screen-names" data-screen hidden>
+    <button class="back-btn" data-back="screen-count" aria-label="Back">&larr;</button>
+    <img class="logo logo-small" src="assets/logo.png" alt="Guess The Friend">
+    <h1 class="title">ENTER PLAYER<br>NAMES</h1>
+    <div id="name-inputs" class="name-inputs"></div>
+    <div id="names-validation" class="validation-message" aria-live="polite"></div>
+    <button class="btn btn-primary" id="btn-continue-names">START GAME &rarr;</button>
+  </section>
+
+  <!-- MODAL: CHARACTER SELECT -->
+  <div class="modal-overlay" id="modal-characters" hidden>
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal-characters" aria-label="Close">&times;</button>
+      <h2 class="modal-title">PICK A CHARACTER</h2>
+      <div class="players-grid" id="character-grid"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN: QUESTION -->
+  <section class="screen" id="screen-question" data-screen hidden>
+    <img class="logo logo-small" src="assets/logo.png" alt="Guess The Friend">
+    <div class="progress-row"><div class="progress-count" id="round-count">Round 1 / 5</div></div>
+    <div class="question-card">
+      <span class="question-tab">QUESTION</span>
+      <div class="question-text" id="question-text">Loading question...</div>
+    </div>
+    <button class="btn btn-primary" id="btn-answer-question">ANSWER QUESTION &rarr;</button>
+    <button class="btn btn-outline" id="btn-add-question">+ ADD CUSTOM QUESTION</button>
+  </section>
+
+  <!-- MODAL: ADD QUESTION -->
+  <div class="modal-overlay" id="modal-add-question" hidden>
+    <div class="modal-box">
+      <button class="modal-close" data-close="modal-add-question" aria-label="Close">&times;</button>
+      <h2 class="modal-title">ADD CUSTOM QUESTION</h2>
+      <textarea class="text-area" id="custom-question-input" placeholder="Type your question..." maxlength="200"></textarea>
+      <div class="hint-text small-hint" id="custom-question-count">0 / 10 custom questions</div>
+      <button class="btn btn-primary" id="btn-save-question">SAVE QUESTION</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: ANSWERING -->
+  <section class="screen" id="screen-answering" data-screen hidden>
+    <div class="progress-row">
+      <div class="progress-bar"><div class="progress-fill" id="answer-progress-fill"></div></div>
+      <div class="progress-count" id="answer-progress-count">0 / 4 Players Answered</div>
+    </div>
+    <div class="question-card small-card">
+      <div class="question-text" id="answering-question-text"></div>
+    </div>
+    <div class="result-avatar-wrap">
+      <div class="avatar-ring" id="answering-avatar"></div>
+    </div>
+    <div class="turn-text" id="answering-turn-text">It's PLAYER's Turn</div>
+    <textarea class="text-area" id="answer-input" placeholder="Type your answer here..."></textarea>
+    <div class="char-count" id="answer-char-count">0 characters</div>
+    <button class="btn btn-primary" id="btn-submit-answer">SUBMIT ANSWER</button>
+  </section>
+
+  <!-- SCREEN: GUESSING -->
+  <section class="screen" id="screen-guessing" data-screen hidden>
+    <h1 class="title small-title">WHO WROTE THIS?</h1>
+    <div class="timer-pill" id="guess-timer">1:00</div>
+    <div class="answer-card">
+      <div class="answer-text" id="guessing-answer-text"></div>
+    </div>
+    <button class="btn btn-primary" id="btn-guess-player">GUESS PLAYER &rarr;</button>
+  </section>
+
+  <!-- SCREEN: WHO WAS IT (VOTING) -->
+  <section class="screen" id="screen-voting" data-screen hidden>
+    <div class="result-avatar-wrap">
+      <div class="avatar-ring" id="voter-avatar"></div>
+    </div>
+    <div class="who-wrote" id="voter-turn-text">It's PLAYER's Turn to Guess</div>
+    <div class="timer-pill" id="vote-timer">1:00</div>
+    <div class="players-grid" id="voting-grid"></div>
+    <button class="btn btn-primary" id="btn-vote-player">VOTE PLAYER &rarr;</button>
+  </section>
+
+  <!-- SCREEN: RESULTS -->
+  <section class="screen" id="screen-results" data-screen hidden>
+    <h1 class="title small-title">ROUND RESULTS</h1>
+    <div class="result-avatar-wrap">
+      <div class="avatar-ring big-ring" id="results-avatar"></div>
+    </div>
+    <div class="result-name" id="results-author-name"></div>
+    <div class="who-wrote" id="results-author-answer"></div>
+    <div class="result-guessers" id="results-guessers"></div>
+    <div class="players-grid" id="results-score-grid"></div>
+    <button class="btn btn-primary" id="btn-next-round">NEXT ROUND &rarr;</button>
+  </section>
+
+  <!-- SCREEN: LEADERBOARD -->
+  <section class="screen" id="screen-leaderboard" data-screen hidden>
+    <h1 class="title small-title">FINAL LEADERBOARD</h1>
+    <div class="podium" id="podium"></div>
+    <div class="name-inputs leaderboard-list" id="leaderboard-list"></div>
+    <button class="btn btn-primary" id="btn-play-again">PLAY AGAIN</button>
+    <button class="btn btn-outline" id="btn-exit">EXIT TO HOME</button>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+
+  <!-- ONLINE MULTIPLAYER LOBBY -->
+  <div class="modal-overlay" id="modal-online" hidden>
+    <div class="modal-box online-modal">
+      <button class="modal-close" id="online-close" aria-label="Close">&times;</button>
+      <div id="online-entry">
+        <h2 class="modal-title">PLAY ONLINE</h2>
+        <p class="hint-text">Create a lobby or join your friends using a six-character code.</p>
+        <label class="online-label" for="online-name">Your name</label>
+        <input class="name-input online-input" id="online-name" maxlength="16" placeholder="Enter your name">
+        <label class="online-label" for="online-character">Choose your character</label>
+        <select class="name-input online-input" id="online-character">
+          <option value="red">Red</option><option value="yellow">Yellow</option><option value="blue">Blue</option>
+          <option value="pink">Pink</option><option value="green">Green</option><option value="orange">Orange</option>
+          <option value="cyan">Cyan</option><option value="purple">Purple</option>
+        </select>
+        <button class="btn btn-primary" id="online-create">CREATE LOBBY</button>
+        <div class="online-divider">OR JOIN A LOBBY</div>
+        <input class="name-input online-input code-input" id="online-code" maxlength="6" placeholder="6-CHARACTER CODE">
+        <button class="btn btn-outline" id="online-join">JOIN LOBBY</button>
+      </div>
+      <div id="online-waiting" hidden>
+        <h2 class="modal-title">WAITING ROOM</h2>
+        <p class="hint-text">Share this code with your friends.</p>
+        <div class="lobby-code" id="online-lobby-code"></div>
+        <button class="btn btn-outline" id="online-copy">COPY CODE</button>
+        <div class="online-status" id="online-status" aria-live="polite"></div>
+        <div class="online-player-list" id="online-players"></div>
+        <div class="online-controls">
+          <button class="btn btn-outline" id="online-ready">SET READY</button>
+          <button class="btn btn-primary" id="online-start" hidden>START GAME</button>
+          <button class="btn btn-outline" id="online-leave">LEAVE LOBBY</button>
+        </div>
+      </div>
+      <div id="online-game" class="online-game" hidden>
+        <div class="online-game-top"><span id="online-round">ROUND 1</span><span id="online-phase">ANSWER</span></div>
+        <h2 class="modal-title" id="online-game-title">GAME</h2>
+        <p class="hint-text" id="online-question"></p>
+        <div class="online-answer-card" id="online-answer-card" hidden></div>
+        <div id="online-answer-form" hidden>
+          <label class="online-label" for="online-answer">Your secret answer</label>
+          <textarea class="name-input online-input" id="online-answer" maxlength="500" rows="3" placeholder="Type your answer..."></textarea>
+          <button class="btn btn-primary" id="online-submit-answer">SUBMIT ANSWER</button>
+        </div>
+        <div id="online-wait-answer" class="online-wait" hidden>Answer submitted. Waiting for the other players…</div>
+        <div id="online-answer-results" class="online-wait" hidden aria-live="polite"></div>
+        <div id="online-vote-form" hidden>
+          <p class="hint-text">Who do you think wrote this answer?</p>
+          <div id="online-vote-players" class="online-vote-grid"></div>
+        </div>
+        <div id="online-wait-vote" class="online-wait" hidden>Your vote is in. Waiting for everyone else…</div>
+        <div id="online-finished" hidden>
+          <h2 class="modal-title">FINAL SCORES</h2>
+          <div id="online-scoreboard" class="online-scoreboard"></div>
+          <button class="btn btn-primary" id="online-play-again" hidden>PLAY AGAIN</button>
+        </div>
+        <div class="online-status" id="online-game-status" aria-live="polite"></div>
+        <div class="online-game-footer"><button class="btn btn-outline" id="online-game-leave">LEAVE GAME</button><button class="btn btn-outline" id="online-advance" hidden>CONTINUE</button></div>
+      </div>
+      <div class="online-error" id="online-error" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+  <script src="config.js"></script>
+  <script src="multiplayer.js"></script>
+
+</body>
+</html>
